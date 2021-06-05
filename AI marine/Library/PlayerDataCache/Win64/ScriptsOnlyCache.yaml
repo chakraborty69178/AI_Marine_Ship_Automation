@@ -5,6 +5,9 @@ ScriptsOnlyBuild:
     - EnvironmentController
     - Float_Object
     - KinematicVehicleSystem.CameraScript
+    - UIController
+    Unity.CollabProxy.Editor.dll:
+    - Unity.Cloud.Collaborate.UserInterface.CollaborateWindow
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -47,6 +50,8 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.ContentSizeFitter
@@ -97,93 +102,99 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1624}
-    - Class: 114
       Script: {instanceID: 1626}
     - Class: 114
       Script: {instanceID: 1628}
     - Class: 114
       Script: {instanceID: 1630}
     - Class: 114
-      Script: {instanceID: 1638}
+      Script: {instanceID: 1632}
     - Class: 114
-      Script: {instanceID: 1836}
+      Script: {instanceID: 1640}
     - Class: 114
-      Script: {instanceID: 2600}
+      Script: {instanceID: 1838}
     - Class: 114
-      Script: {instanceID: 2704}
+      Script: {instanceID: 2602}
     - Class: 114
-      Script: {instanceID: 3624}
+      Script: {instanceID: 2706}
     - Class: 114
-      Script: {instanceID: 3734}
+      Script: {instanceID: 2994}
     - Class: 114
-      Script: {instanceID: 3824}
+      Script: {instanceID: 3628}
     - Class: 114
-      Script: {instanceID: 3856}
+      Script: {instanceID: 3738}
     - Class: 114
-      Script: {instanceID: 3938}
+      Script: {instanceID: 3828}
     - Class: 114
-      Script: {instanceID: 4130}
+      Script: {instanceID: 3860}
     - Class: 114
-      Script: {instanceID: 4268}
+      Script: {instanceID: 3942}
     - Class: 114
-      Script: {instanceID: 4664}
+      Script: {instanceID: 4134}
     - Class: 114
-      Script: {instanceID: 4794}
+      Script: {instanceID: 4272}
     - Class: 114
-      Script: {instanceID: 5172}
+      Script: {instanceID: 4668}
     - Class: 114
-      Script: {instanceID: 6130}
+      Script: {instanceID: 4798}
     - Class: 114
-      Script: {instanceID: 6152}
+      Script: {instanceID: 5176}
     - Class: 114
-      Script: {instanceID: 6230}
+      Script: {instanceID: 5238}
     - Class: 114
-      Script: {instanceID: 6484}
+      Script: {instanceID: 5604}
     - Class: 114
-      Script: {instanceID: 6488}
+      Script: {instanceID: 6058}
     - Class: 114
-      Script: {instanceID: 6508}
+      Script: {instanceID: 6140}
     - Class: 114
-      Script: {instanceID: 6844}
+      Script: {instanceID: 6162}
     - Class: 114
-      Script: {instanceID: 7002}
+      Script: {instanceID: 6240}
     - Class: 114
-      Script: {instanceID: 7196}
+      Script: {instanceID: 6494}
     - Class: 114
-      Script: {instanceID: 7296}
+      Script: {instanceID: 6498}
     - Class: 114
-      Script: {instanceID: 7302}
+      Script: {instanceID: 6518}
     - Class: 114
-      Script: {instanceID: 7434}
+      Script: {instanceID: 6854}
     - Class: 114
-      Script: {instanceID: 7484}
+      Script: {instanceID: 7012}
     - Class: 114
-      Script: {instanceID: 7540}
+      Script: {instanceID: 7206}
     - Class: 114
-      Script: {instanceID: 7654}
+      Script: {instanceID: 7306}
     - Class: 114
-      Script: {instanceID: 7784}
+      Script: {instanceID: 7312}
     - Class: 114
-      Script: {instanceID: 7960}
+      Script: {instanceID: 7442}
     - Class: 114
-      Script: {instanceID: 8106}
+      Script: {instanceID: 7492}
     - Class: 114
-      Script: {instanceID: 8180}
+      Script: {instanceID: 7548}
     - Class: 114
-      Script: {instanceID: 8992}
+      Script: {instanceID: 7650}
     - Class: 114
-      Script: {instanceID: 9368}
+      Script: {instanceID: 7662}
     - Class: 114
-      Script: {instanceID: 9694}
+      Script: {instanceID: 7792}
     - Class: 114
-      Script: {instanceID: 89060}
+      Script: {instanceID: 7968}
     - Class: 114
-      Script: {instanceID: 92246}
+      Script: {instanceID: 8114}
     - Class: 114
-      Script: {instanceID: 94146}
+      Script: {instanceID: 8188}
     - Class: 114
-      Script: {instanceID: 144162}
+      Script: {instanceID: 8650}
+    - Class: 114
+      Script: {instanceID: 9002}
+    - Class: 114
+      Script: {instanceID: 9378}
+    - Class: 114
+      Script: {instanceID: 9704}
+    - Class: 114
+      Script: {instanceID: 9842}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -443,6 +454,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnCollisionEnterMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 0ea6b30af1bb47bba3ad07b0975966e6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BoatController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -805,6 +822,12 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerEnumHistory
   - hash:
       serializedVersion: 2
+      Hash: 5ee5443c6eb7b62bb5031418a73b1cd0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Float_Object
+  - hash:
+      serializedVersion: 2
       Hash: fd68d84f33fad85aac38f2739c0ee270
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -839,6 +862,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
     className: UniversalRenderPipelineEditorResources
+  - hash:
+      serializedVersion: 2
+      Hash: fee933d72f134db88999dd4693f90a76
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BoatMovement
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -893,6 +922,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
     className: Tonemapping
+  - hash:
+      serializedVersion: 2
+      Hash: 36b9ec7441ce045428706749b73a1ac6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: KinematicVehicleSystem
+    className: CameraScript
   - hash:
       serializedVersion: 2
       Hash: 04885fa4c2e3f34bb92b18186472b2c4
@@ -1291,6 +1326,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: 0b396865437327615ac866953a4bf941
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnvironmentController
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -1411,6 +1452,12 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: d08ed44394a2bf03694cf1acf5cffb31
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -1439,37 +1486,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 5ee5443c6eb7b62bb5031418a73b1cd0
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Float_Object
-  - hash:
-      serializedVersion: 2
-      Hash: 0ea6b30af1bb47bba3ad07b0975966e6
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BoatController
-  - hash:
-      serializedVersion: 2
-      Hash: fee933d72f134db88999dd4693f90a76
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BoatMovement
-  - hash:
-      serializedVersion: 2
-      Hash: 36b9ec7441ce045428706749b73a1ac6
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: KinematicVehicleSystem
-    className: CameraScript
-  - hash:
-      serializedVersion: 2
-      Hash: 1e4a09df6312d6a35392ad22b265a9db
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: EnvironmentController
   platform: 19
   scenePathNames:
   - Assets/Scenes/Main.unity
-  playerPath: D:/projects/AI_Marine_build/AI marine.exe
+  playerPath: D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AI_Marine_build/AI
+    marine.exe

@@ -345,6 +345,7 @@
 "Assets/Scripts/CameraScript.cs"
 "Assets/Scripts/EnvironmentController.cs"
 "Assets/Scripts/Float_Object.cs"
+"Assets/UIController.cs"
 -langversion:8.0
 
 /deterministic
