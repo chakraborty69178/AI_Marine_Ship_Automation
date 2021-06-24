@@ -10,13 +10,18 @@ public class EnvironmentController : MonoBehaviour
     public static bool isControlledByAI = false;
     public static bool isTraining = false;
     public static  List<GameObject> ports = new List<GameObject>();
+    public static List<GameObject> hurdles = new List<GameObject>();
     public static int randomPorts;
+    public static int randomHurdles;
     public static GameObject parent;
+    public static GameObject hurdleParent;
 
 
-    [SerializeField] public static GameObject staticportAsset;
+    public static GameObject staticportAsset;
+    public static GameObject staticHurdleAsset;
     public GameObject portAsset;
     public GameObject Boat;
+    public GameObject hurdleAsset;
    
 
 
@@ -76,10 +81,15 @@ public class EnvironmentController : MonoBehaviour
 
         Screen.fullScreen = false;
         parent = new GameObject();
+        hurdleParent = new GameObject();
         parent.name = "Ports";
         if (portAsset != null)
         {
             staticportAsset = portAsset;
+        }
+        if (hurdleAsset != null)
+        {
+            staticHurdleAsset = hurdleAsset;
         }
 
 
@@ -109,11 +119,7 @@ public class EnvironmentController : MonoBehaviour
         
     }
 
-    private void Start()
-    {
-        
-        
-    }
+    
 
     public void Update()
     {
@@ -233,10 +239,54 @@ public class EnvironmentController : MonoBehaviour
                 Debug.Log("Executed");
             }
             string keyMap = "";
-            //Debug.Log(Event.current.keyCode);
-           
 
-                trainingDataSet.Append(leftname + "," + midname + "," + rightname + "," + BoatSpeed + "," + "NULL" + "\n");
+            if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow))
+            {
+                keyMap = "Left|Up";
+
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+            {
+                keyMap = "Right|Up";
+
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
+            {
+                keyMap = "Left|Down";
+
+            }
+            else if (Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
+            {
+                keyMap = "Right|Down";
+
+            }
+
+            else if (Input.GetKey(KeyCode.UpArrow))
+            {
+                keyMap = "Up";
+            }
+            else if (Input.GetKey(KeyCode.DownArrow))
+            {
+                keyMap = "Down";
+
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                keyMap = "Right";
+
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                keyMap = "Left";
+
+            }
+            else {
+
+                keyMap = "NULL";
+            }
+
+            Debug.Log(keyMap);
+            trainingDataSet.Append(leftname + "," + midname + "," + rightname + "," + BoatSpeed + "," + keyMap + "\n");
 
                 Fname = Fname + 1;
             }
@@ -263,8 +313,23 @@ private void instantiatePorts()
         Debug.Log("Randomise Ports Failed || Asset not found");
     }
 
+    if (staticHurdleAsset != null)
+    {
+        for (int i = 0; i < 1000; i++)
+        {
+                //Vector3 positions = new Vector3(Random.Range(minX, maxX), posY, Random.Range(minZ, maxZ));
+                Vector3 positions = new Vector3(0, -820, 0);
+                GameObject hurdle = (GameObject)Instantiate(staticHurdleAsset, positions, Quaternion.identity, hurdleParent.transform);
+                hurdles.Add(hurdle);
+        }
+    }
+    else
+    {
+        Debug.Log("Randomise Ports Failed || Asset not found");
+    }
 
-}
+
+    }
 
 public static void RandomisePortLocation()
     {
@@ -272,12 +337,24 @@ public static void RandomisePortLocation()
         {
             port.transform.position = new Vector3(0, -820, 0);
         }
-        randomPorts = Random.Range(8, 15);
+        randomPorts = Random.Range(1, 2);
 
         for (int i = 0; i < randomPorts; i++)
         {
             Vector3 positions = new Vector3(Random.Range(minX, maxX), posY, Random.Range(minZ, maxZ));
             ports[i].transform.localPosition = positions;
+        }
+
+        foreach (GameObject hurdle in hurdles)
+        {
+            hurdle.transform.position = new Vector3(0, -820, 0);
+        }
+        randomHurdles = Random.Range(900, 1000);
+
+        for (int i = 0; i < randomHurdles; i++)
+        {
+            Vector3 positions = new Vector3(Random.Range(minX, maxX), posY, Random.Range(minZ, maxZ));
+            hurdles[i].transform.localPosition = positions;
         }
     }
 

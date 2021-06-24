@@ -108,8 +108,8 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
--r:"D:/projects/AI marine/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
--r:"D:/projects/AI marine/Library/PackageCache/com.unity.visualscripting@1.6.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"D:/AI_Marine_Ship_Automation/AI marine/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
+-r:"D:/AI_Marine_Ship_Automation/AI marine/Library/PackageCache/com.unity.visualscripting@1.6.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"D:/Unity/2021.1.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"D:/Unity/2021.1.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"D:/Unity/2021.1.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll"
@@ -345,6 +345,7 @@
 "Assets/Scripts/CameraScript.cs"
 "Assets/Scripts/EnvironmentController.cs"
 "Assets/Scripts/Float_Object.cs"
+"Assets/Scripts/UIcontroller.cs"
 "Assets/UIController.cs"
 -langversion:8.0
 
