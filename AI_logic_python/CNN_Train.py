@@ -10,8 +10,6 @@ import copy
 from sklearn import preprocessing
 
 
-
-
 import numpy as np
 
 import csv
@@ -84,7 +82,7 @@ class TrainingDataset(Dataset):
         self.img1 = img[:,0]
         self.img2 = img[:,1]
         self.img3 = img[:,2]
-        self.speed = speeds[:,0]
+        self.speed = speeds
         self.label = labl[:,0]
         self.n_samples = len(labl)
     def __getitem__(self,index):
@@ -95,34 +93,51 @@ class TrainingDataset(Dataset):
 
 datasetClass = TrainingDataset()        
 dataLoader = DataLoader(dataset = datasetClass, batch_size = 8 ,shuffle=True)
-dataItr = iter(dataLoader)
-img1,img2,img3,speed,label = dataItr.next()
-print(speed)
-#print(features)
-#print(dsFinal)
-#print(lables)
-# get some random training images
 
-#print(lables)
-# show images
-#imshow(torchvision.utils.make_grid(images))
-# print labels
-#print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
 
 
 # Defining Brain
 model =  Arch.Brain()
 
 
+
+
 # Train model
-epochs = 15
-loss = nn.CrossEntropyLoss()
+epochs = 50
+criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(),lr = 0.01)
 
 Losses = []
 
 def trainModel():
-    pass
+    for epoch in range(epochs):  # loop over the dataset multiple times
+        running_loss = 0.0
+        for i, data in enumerate(dataLoader, 0):
+            # get the inputs
+            img1,img2,img3,speed, labels = data
+
+            # zero the parameter gradients
+            optimizer.zero_grad()
+
+            # forward + backward + optimize
+            outputs = model.forward(img1,img2,img3,speed)
+            #print(outputs.dtype)
+            labels = labels.type(torch.LongTensor)
+           
+            loss = criterion(outputs,labels)
+            
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+
+        Losses.append(running_loss)
+        print('Epoch [%d, %5d] loss: %.3f' %(epoch + 1, i + 1, running_loss/i))
+        running_loss = 0.0
+    PATH = "state_dict_model.pt"
+    torch.save(model.state_dict(), PATH)
+    print('Finished Training')
+
+
 
 
 # Test Model
@@ -130,6 +145,7 @@ def testModel():
     pass
 
 
+trainModel()
 
 
 print("\n\n++++++++++++++++++++++++++++++++++++++ End Reached +++++++++++++++++++++++++++++++++++++")
