@@ -103,9 +103,9 @@ model =  Arch.Brain()
 
 
 # Train model
-epochs = 50
+epochs = 100
 criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(model.parameters(),lr = 0.01)
+optimizer = torch.optim.Adam(model.parameters(),lr = 0.001)
 
 Losses = []
 
@@ -133,7 +133,7 @@ def trainModel():
         Losses.append(running_loss)
         print('Epoch [%d, %5d] loss: %.3f' %(epoch + 1, i + 1, running_loss/i))
         running_loss = 0.0
-    PATH = "state_dict_model.pt"
+    PATH = "state_dict_model_1.pt"
     torch.save(model.state_dict(), PATH)
     print('Finished Training')
 
