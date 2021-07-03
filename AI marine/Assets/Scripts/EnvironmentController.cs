@@ -37,6 +37,7 @@ public class EnvironmentController : MonoBehaviour
     string leftCamData = "";
     string rightCamData = "";
     string midCamData = "";
+    string shipCoOrdinateFile = "";
 
 
     public float BoatSpeed;
@@ -53,12 +54,15 @@ public class EnvironmentController : MonoBehaviour
     int resHeight = 240;
     StringBuilder trainingDataSet;
     int Fname;
-    float frameCounter;
+    float frameCounter = 0;
+    float shipLocationframeCounter = 0;
+    public int locationCaptureInterval = 1470000;
     public int sreenshotInterval = 1470000;
 
 
     void Awake()
     {
+        //GenerateShipLocationFile();
         // Initialise all file path name here
         //portsCoOrdinateFile = Application.dataPath + "/AIdata/dataset/PortsCoordinates.csv";
         //trainingDatasetFile = Application.dataPath + "/AIdata/dataset/dataset.csv";
@@ -66,11 +70,12 @@ public class EnvironmentController : MonoBehaviour
         // midCamData = Application.dataPath + "/AIdata/dataset/Mid/";
         //rightCamData = Application.dataPath + "/AIdata/dataset/Right/";
 
-        portsCoOrdinateFile = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/PortsCoordinates.csv";
-        trainingDatasetFile = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/dataset.csv";
-        leftCamData = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/Left/";
-        midCamData = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/Mid/";
-        rightCamData = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/Right/";
+        portsCoOrdinateFile = "D:/AI_Marine_Ship_Automation/AIdata/dataset/PortsCoordinates.csv";
+        shipCoOrdinateFile = "D:/AI_Marine_Ship_Automation/AIdata/dataset/shipCoordinate.csv";
+        trainingDatasetFile = "D:/AI_Marine_Ship_Automation/AIdata/dataset/dataset.csv";
+        leftCamData = "D:/AI_Marine_Ship_Automation/AIdata/dataset/Left/";
+        midCamData = "D:/AI_Marine_Ship_Automation/AIdata/dataset/Mid/";
+        rightCamData = "D:/AI_Marine_Ship_Automation/AIdata/dataset/Right/";
 
         leftCam.gameObject.SetActive(false);
         midCam.gameObject.SetActive(false);
@@ -98,6 +103,7 @@ public class EnvironmentController : MonoBehaviour
         instantiatePorts();
         RandomisePortLocation();
         GeneratePortFile();
+        GenerateShipLocationFile();
 
         currentPosition = Boat.transform.position;
         previousPosition = Boat.transform.position;
@@ -143,7 +149,8 @@ public class EnvironmentController : MonoBehaviour
         {
             staticportAsset = portAsset;
             RandomisePortLocation();
-            GeneratePortFile();     // Generate new port data
+            GeneratePortFile();
+            GenerateShipLocationFile();// Generate new port data
         }
 
 
@@ -192,8 +199,13 @@ public class EnvironmentController : MonoBehaviour
         if (isTraining)
         {
             frameCounter += Time.deltaTime;
+            shipLocationframeCounter += Time.deltaTime;
             CallTakeSnapshot();
-
+            if (shipLocationframeCounter >= locationCaptureInterval)
+            {
+                shipLocationframeCounter = 0;
+                GenerateShipLocationFile();
+            }
 
         }
     }
@@ -380,6 +392,31 @@ public static void RandomisePortLocation()
             tw.Close();
 
             Debug.Log("Check Path: "+portsCoOrdinateFile);
+
+        }
+        else
+        {
+            Debug.LogError("Nothing to write");
+        }
+    }
+
+    public void GenerateShipLocationFile()
+    {
+        Debug.Log("Ship Location 1");
+        if (Boat != null)
+        {
+            float shipX = Boat.transform.position.x;
+            float shipZ = Boat.transform.position.z;
+            Debug.Log("Ship Location 1.1");
+            TextWriter tw = new StreamWriter(shipCoOrdinateFile, false);
+            tw.WriteLine("Coordinates(X||Z),");
+            tw.WriteLine(shipX + "||" + shipZ);
+            tw.Close();
+            
+            
+            
+
+            Debug.Log("Check Path: " + shipCoOrdinateFile);
 
         }
         else

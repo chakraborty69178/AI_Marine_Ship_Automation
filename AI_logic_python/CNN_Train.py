@@ -19,7 +19,7 @@ import csv
 
 # import dataset
 def import_dataset():
-    dataset = pd.read_csv('D:\AI_Marine_Major_Project\AI_Marine_Ship_Automation\AIdata\dataset\dataset.csv')
+    dataset = pd.read_csv('D:\AI_Marine_Ship_Automation\AIdata\dataset\dataset.csv')
     dataset =  dataset.values
     return dataset
 
@@ -112,7 +112,9 @@ Losses = []
 def trainModel():
     for epoch in range(epochs):  # loop over the dataset multiple times
         running_loss = 0.0
+        count = 0
         for i, data in enumerate(dataLoader, 0):
+            count += 1
             # get the inputs
             img1,img2,img3,speed, labels = data
 
@@ -131,8 +133,9 @@ def trainModel():
             running_loss += loss.item()
 
         Losses.append(running_loss)
-        print('Epoch [%d, %5d] loss: %.3f' %(epoch + 1, i + 1, running_loss/i))
+        print('Epoch [%d, %5d] loss: %.3f' %(epoch + 1, i + 1, running_loss/count))
         running_loss = 0.0
+        count = 0
     PATH = "state_dict_model_1.pt"
     torch.save(model.state_dict(), PATH)
     print('Finished Training')
