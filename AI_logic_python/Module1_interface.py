@@ -18,9 +18,9 @@ import csv
 model = Arch.Brain()
 model.load_state_dict(torch.load("state_dict_model_1.pt"))
 
-x_path = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/Left/Left_26.png"
-y_path = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/Mid/Mid_26.png"
-z_path = "D:/AI_Marine_Major_Project/AI_Marine_Ship_Automation/AIdata/dataset/Right/Right_26.png"
+x_path = "D:/AI_Marine_Ship_Automation/AIdata/dataset/Left/Left_26.png"
+y_path = "D:/AI_Marine_Ship_Automation/AIdata/dataset/Mid/Mid_26.png"
+z_path = "D:/AI_Marine_Ship_Automation/AIdata/dataset/Right/Right_26.png"
 
 
 speed = 10
