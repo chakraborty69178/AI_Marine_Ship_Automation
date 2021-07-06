@@ -14,16 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
-    - Assets/AIdata.meta
-    - Assets/AIdata/dataset.meta
-    - Assets/AIdata/dataset/Left.meta
-    - Assets/AIdata/dataset/Mid.meta
-    - Assets/AIdata/dataset/Right.meta
     - Assets/Scenes/Main.unity
     - Assets/Scripts/EnvironmentController.cs
     - 
-    m_Values: 0101010101010101
-  RevisionSummary: Generating Ports Co-Ordinates file
+    m_Values: 000000
+  RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 
   HistoryPageNumber: 0

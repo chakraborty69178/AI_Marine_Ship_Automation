@@ -349,7 +349,7 @@ public static void RandomisePortLocation()
         {
             port.transform.position = new Vector3(0, -820, 0);
         }
-        randomPorts = Random.Range(1, 2);
+        randomPorts = Random.Range(10, 15);
 
         for (int i = 0; i < randomPorts; i++)
         {
