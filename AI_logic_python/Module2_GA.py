@@ -184,7 +184,7 @@ def pointMutation(indevidual,prob):
 test = 0
 prev = 0
 next = 0
-for i in range(0,100000):
+for i in range(0,10000):
     test +=1
     if test ==1:
         prev = population[0]['distance']
