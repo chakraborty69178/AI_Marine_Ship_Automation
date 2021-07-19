@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portAsset: {fileID: 6689121726353090238}
   Boat: {fileID: 65564685}
-  hurdleAsset: {fileID: 0}
+  hurdleAsset: {fileID: 2843242433897192464, guid: ce5554c7764b60b4dacd473e2b9ab23b, type: 3}
   BoatSpeed: 0
   leftCam: {fileID: 1577749886}
   midCam: {fileID: 165585586}

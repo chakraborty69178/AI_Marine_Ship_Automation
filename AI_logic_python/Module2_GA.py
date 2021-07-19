@@ -4,7 +4,7 @@ import numpy as np
 shipLocationFile = pd.read_csv("D:\AI_Marine_Ship_Automation\AIdata\dataset\shipCoordinate.csv")
 portsLocationFile = pd.read_csv("D:\AI_Marine_Ship_Automation\AIdata\dataset\PortsCoordinates.csv")
 
-population_size = 10
+population_size = 600
 
 print(shipLocationFile)
 print("\n")
@@ -79,6 +79,8 @@ for i in range(population_size):
 
 
 # Sorting popultion
+
+""""
 def sortPopulation(population):
     n = population_size
     for i in range(n):
@@ -87,7 +89,48 @@ def sortPopulation(population):
                 population[j], population[j+1] = population[j+1], population[j]
     return population
 
-population = sortPopulation(population)
+"""
+
+#population = sortPopulation(population)
+
+def sortPopulation(nlist):
+    
+    if len(nlist)>1:
+        mid = len(nlist)//2
+        lefthalf = nlist[:mid]
+        righthalf = nlist[mid:]
+
+        sortPopulation(lefthalf)
+        sortPopulation(righthalf)
+        i=j=k=0       
+        while i < len(lefthalf) and j < len(righthalf):
+            if lefthalf[i]['cost'] < righthalf[j]['cost']:
+                nlist[k]=lefthalf[i]
+                i=i+1
+            else:
+                nlist[k]=righthalf[j]
+                j=j+1
+            k=k+1
+
+        while i < len(lefthalf):
+            nlist[k]=lefthalf[i]
+            i=i+1
+            k=k+1
+
+        while j < len(righthalf):
+            nlist[k]=righthalf[j]
+            j=j+1
+            k=k+1
+    
+
+test = np.copy(population).tolist()
+
+sortPopulation(population)
+
+
+
+
+
 
 
 
@@ -127,7 +170,6 @@ def pointCrossover(selection):
     ind1 = np.copy(selection[0])
     ind2 = np.copy(selection[1])
     point = random.randint(2,len(portsLocation[:,0])-2)
-    print(point)
     arrayAfterPoint = np.copy(ind1[point :])
     fullArray = np.copy(ind2)
     delete =[]
@@ -184,32 +226,38 @@ def pointMutation(indevidual,prob):
 test = 0
 prev = 0
 next = 0
-for i in range(0,10000):
+prev_seq = 0
+for i in range(0,100000):
     test +=1
     if test ==1:
         prev = population[0]['distance']
-    
-    print("generation"+str(i))
-    print(population[0])
+
+    if(not (prev_seq == population[0]['cost'])):
+        prev_seq = population[0]['cost']
+        print("generation "+str(i))
+        print(population[0])
     probablities = get_probability_list()
     selection = roulette_wheel_pop(population, probablities, 2)
     ind1,ind2 =pointCrossover(selection)
-    mut1 = pointMutation(ind1,90)
-    mut2 = pointMutation(ind2,90)
+    mut1 = pointMutation(ind1,100)
+    mut2 = pointMutation(ind2,100)
     cst =cost(mut1)
     indevidual_1 = {'chromosomes':mut1,'cost':cst**10,'distance':cst}
     cst =cost(mut2)
     indevidual_2 = {'chromosomes':mut1,'cost':cst**10,'distance':cst}
     #print(indevidual_1)
     #print(indevidual_2)
-    population[population_size-2] = indevidual_1
-    population[population_size-1]= indevidual_2
-    population = sortPopulation(population)
+    population[population_size-4] = indevidual_1
+    population[population_size-3]= indevidual_2
 
-    if test > 20000:
+    sortPopulation(population)
+
+    if test > 15000:
         test = 0
         next = population[0]['distance']
         if prev <= next:
+            print("generation "+str(i))
+            print(population[0])
             break
 
 
@@ -229,10 +277,33 @@ for i in population:
 print(sol)
 
 
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-#plt.scatter(x, y)
-#plt.show()
+
+
+sequence = population[0]["chromosomes"]
+x_value = []
+y_value = []
+n = []
+for i in range(len(x+1)):
+    if(i == 0):
+        x_value.append(x[0])
+        y_value.append(y[0])
+        n.append(0)
+    else:
+       x_value.append(x[sequence[i-1]])
+       y_value.append(y[sequence[i-1]]) 
+       n.append(sequence[i-1])
+
+x_value= np.array(x_value)
+y_value= np.array(y_value)
+fig, ax = plt.subplots()
+ax.scatter(x_value, y_value)
+
+for i, txt in enumerate(n):
+    ax.annotate(txt, (x_value[i], y_value[i]))
+plt.plot(x_value, y_value)
+plt.show()
 
 
 
