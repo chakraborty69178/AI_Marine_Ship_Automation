@@ -92,7 +92,7 @@ ds = import_dataset()
 count = 0
 length = len(ds[:, 0])
 y = ds[:, 4]
-#length = 500
+length = 500
 print(length)
 for i in range(length):
     
