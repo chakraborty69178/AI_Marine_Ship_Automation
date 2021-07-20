@@ -35,7 +35,7 @@ classes ={
             "Left|Up": 5,
             "Right|Down":6,
             "Left|Down": 7,
-            
+            "Left" : 8
         }
         
 def dataPrep(datasets):
