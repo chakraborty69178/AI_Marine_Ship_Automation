@@ -50,7 +50,7 @@ for i in range(len(portsLocation[:,0])+1):
                 dist = ((((float(coordinate2[0]) - float(coordinate1[0]) )**2) + ((float(coordinate2[1])-float(coordinate1[1]))**2) )**0.5)
                 distances[index] = dist
 
-print(distances)
+#print(distances)
 
 print("\n")
 print("\n")
@@ -234,8 +234,8 @@ for i in range(0,100000):
 
     if(not (prev_seq == population[0]['cost'])):
         prev_seq = population[0]['cost']
-        print("generation "+str(i))
-        print(population[0])
+        #print("generation "+str(i))
+        #print(population[0])
     probablities = get_probability_list()
     selection = roulette_wheel_pop(population, probablities, 2)
     ind1,ind2 =pointCrossover(selection)
@@ -256,8 +256,8 @@ for i in range(0,100000):
         test = 0
         next = population[0]['distance']
         if prev <= next:
-            print("generation "+str(i))
-            print(population[0])
+            #print("generation "+str(i))
+            #print(population[0])
             break
 
 

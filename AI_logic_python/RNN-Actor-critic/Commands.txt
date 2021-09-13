@@ -1,0 +1,12 @@
+
+
+python config.py -m train -b 512 -t 20 -s 13000
+python train.py -p Pkl/train20.pkl
+
+
+
+
+
+
+python config.py -m test -t 20 -s 10 -ap Pt/train20_1113_12_12_step14999_act.pt --islogger --seed 123
+python test.py -p Pkl/test20.pkl
